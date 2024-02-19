@@ -1,6 +1,5 @@
 #include "sort.h"
 
-
 /**
  * swap - Swaps the values of two integers
  * @x: Pointer to the first integer
@@ -41,22 +40,29 @@ void quick_sort(int *array, size_t size)
  */
 int partition(int *array, int start, int end, size_t size)
 {
-	int pIndex = start;
+	int pIndex = start - 1;
 	int pivot = array[end];
 	int i;
 
 	for (i = start; i < end; i++)
 	{
-		if (array[i] < pivot)
+		if (array[i] <= pivot)
 		{
-			swap(&array[i], &array[pIndex]);
 			pIndex++;
+			if (pIndex != i)
+			{
+				swap(&array[i], &array[pIndex]);
+				print_array(array, size);
+			}
 		}
 	}
 
-	swap(&array[end], &array[pIndex]);
-	print_array(array, size);
-	return (pIndex);
+	if (pIndex + 1 != end)
+	{
+		swap(&array[end], &array[pIndex + 1]);
+		print_array(array, size);
+	}
+	return (pIndex + 1);
 }
 
 
