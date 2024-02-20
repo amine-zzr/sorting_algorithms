@@ -12,6 +12,9 @@ void shell_sort(int *array, size_t size)
 	size_t i, j;
 	int tmp;
 
+	if (array == NULL)
+		return;
+
 	while (interval < size / 3)
 		interval *= 3 + 1;
 
