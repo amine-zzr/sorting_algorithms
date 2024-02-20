@@ -37,6 +37,8 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *less, *cur;
 
+	if (!list || !*list)
+		return;
 	cur = *list;
 	cur = cur->next;
 	while (cur)
