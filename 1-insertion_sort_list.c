@@ -6,7 +6,7 @@
  * @node_1: node of a list
  * @node_2: node of a list
  *
- * return: node to left which can be the new head if he has a null prev
+ * Return: node to left which can be the new head if he has a null prev
  */
 listint_t	*swap_nodes(listint_t *node_1, listint_t *node_2)
 {
