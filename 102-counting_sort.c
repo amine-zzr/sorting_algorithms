@@ -12,15 +12,20 @@ void counting_sort(int *array, size_t size)
 	int *count, *output;
 	size_t i, j, mx = 0;
 
-	if (array == NULL)
+	if (array == NULL || size < 2)
 		return;
 	for (i = 0; i < size; i++)
 		if (mx < (size_t)array[i])
 			mx = array[i];
 	count = malloc(sizeof(int) * (mx + 1));
-	output = malloc(sizeof(int) * (size + 1));
-	if (!count || !output)
+	if (count == NULL)
 		return;
+	output = malloc(sizeof(int) * (size + 1));
+	if (!output)
+	{
+		free(count);
+		return;
+	}
 	for (i = 0; i < mx + 1; i++)
 		count[i] = 0;
 	for (i = 0; i < size; i++)
