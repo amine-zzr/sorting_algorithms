@@ -9,7 +9,7 @@
  */
 void quick_sort_hoare(int *array, size_t size)
 {
-	if (!array || size < 2)
+	if (array == NULL || size < 2)
 		return;
 
 	quicksort_hoare(array, 0, size - 1, size);
