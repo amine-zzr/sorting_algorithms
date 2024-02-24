@@ -2,6 +2,7 @@
 #define SORT_H
 
 #include <stdlib.h>
+#include <stdio.h>
 
 
 /**
@@ -37,5 +38,8 @@ void sift_down(int *array, size_t start, size_t end, size_t size);
 void quick_sort_hoare(int *array, size_t size);
 void quicksort_hoare(int *array, int start, int end, size_t size);
 int hoare_partition(int *array, int start, int end, size_t size);
+void merge(int *array, int *buffer, size_t start, size_t mid, size_t end);
+void merge_sort_recursive(int *array, int *buffer, size_t start, size_t end);
+void merge_sort(int *array, size_t size);
 
 #endif

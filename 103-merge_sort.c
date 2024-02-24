@@ -1,6 +1,12 @@
 #include "sort.h"
 
-void merge_sort (int *array, size_t size)
+/**
+ * merge_sort - Sorts an array of integers in ascending order using the
+ * merge sort algorithm.
+ * @array: Pointer to the array to be sorted.
+ * @size: Size of the array.
+ */
+void merge_sort(int *array, size_t size)
 {
 	int *buffer;
 
@@ -16,11 +22,19 @@ void merge_sort (int *array, size_t size)
 	free(buffer);
 }
 
+/**
+ * merge_sort_recursive - Recursively sorts a subarray of integers using the
+ * merge sort algorithm.
+ * @array: Pointer to the array containing the subarray to be sorted.
+ * @buffer: Temporary buffer used during the merging process.
+ * @start: Index of the first element of the subarray.
+ * @end: Index of the last element of the subarray + 1.
+ */
 void merge_sort_recursive(int *array, int *buffer, size_t start, size_t end)
 {
 	size_t mid;
 
-	if (end - start > 1)
+	if (start < end - 1)
 	{
 		mid = start + (end - start) / 2;
 
@@ -31,6 +45,14 @@ void merge_sort_recursive(int *array, int *buffer, size_t start, size_t end)
 	}
 }
 
+/**
+ * merge - Merges two sorted subarrays into a single sorted array.
+ * @array: Pointer to the array containing the subarrays to be merged.
+ * @buffer: Temporary buffer used during the merging process.
+ * @start: Index of the first element of the left subarray.
+ * @mid: Index of the first element of the right subarray.
+ * @end: Index of the last element of the right subarray + 1.
+ */
 void merge(int *array, int *buffer, size_t start, size_t mid, size_t end)
 {
 	size_t i, j, k = 0;
