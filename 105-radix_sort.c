@@ -8,13 +8,15 @@
  * @d: A integer multiple of 10 represent the digit we need to sort based on
  *
  */
-static void counting_sort_radix(int *array, size_t size, size_t d)
+static void counting_sort_radix(int *array, size_t size, long int d)
 {
-	int count[10] = {0};
+	int count[10];
 	int *output;
 	size_t i, j;
 
 	output = malloc(sizeof(int) * (size + 1));
+	for (i = 0; i < 10; i++)
+		count[i] = 0;
 	if (!output)
 		return;
 	for (i = 0; i < size; i++)
@@ -43,7 +45,8 @@ static void counting_sort_radix(int *array, size_t size, size_t d)
 void radix_sort(int *array, size_t size)
 {
 	int mx;
-	size_t i, d;
+	long int d;
+	size_t i;
 
 	if (array == NULL || size == 0)
 		return;
@@ -51,7 +54,7 @@ void radix_sort(int *array, size_t size)
 	for (i = 0; i < size; i++)
 		if (mx < array[i])
 			mx = array[i];
-	for (d = 1; mx / d > 0; d *= 10)
+	for (d = 1; (long int)mx / d > 0; d *= 10)
 	{
 		counting_sort_radix(array, size, d);
 		print_array(array, size);
