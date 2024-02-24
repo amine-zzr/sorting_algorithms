@@ -9,7 +9,7 @@
  */
 void quick_sort_hoare(int *array, size_t size)
 {
-	if (array == NULL || size < 2)
+	if (!array || size < 2)
 		return;
 
 	quicksort_hoare(array, 0, size - 1, size);
@@ -30,8 +30,8 @@ void quicksort_hoare(int *array, int start, int end, size_t size)
 	if (start < end)
 	{
 		pivot = hoare_partition(array, start, end, size);
-		quicksort_hoare(array, start, pivot, size);
-		quicksort_hoare(array, pivot + 1, end, size);
+		quicksort_hoare(array, start, pivot - 1, size);
+		quicksort_hoare(array, pivot, end, size);
 	}
 }
 
@@ -46,10 +46,10 @@ void quicksort_hoare(int *array, int start, int end, size_t size)
  */
 int hoare_partition(int *array, int start, int end, size_t size)
 {
-	int pivot = array[start];
+	int pivot = array[end];
 	int i = start - 1, j = end + 1;
 
-	while (1)
+	while (i < j)
 	{
 		do {
 			i++;
@@ -59,12 +59,13 @@ int hoare_partition(int *array, int start, int end, size_t size)
 			j--;
 		} while (array[j] > pivot);
 
-		if (i >= j)
-			return (j);
-
-		swap(&array[i], &array[j]);
-		print_array(array, size);
+		if (i < j)
+		{
+			swap(&array[i], &array[j]);
+			print_array(array, size);
+		}
 	}
+	return (i);
 }
 
 /**
